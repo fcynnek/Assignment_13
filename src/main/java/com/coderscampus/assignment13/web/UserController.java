@@ -46,18 +46,18 @@ public class UserController {
 		return "users";
 	}
 	
-	@GetMapping("/users/{userId}")
+	@GetMapping("/user-details/{userId}")
 	public String getOneUser (ModelMap model, @PathVariable Long userId) {
 		User user = userService.findById(userId);
 		model.put("users", Arrays.asList(user));
 		model.put("user", user);
-		return "redirect:/user-details";
+		return "redirect:/user-details/" + user.getUserId();
 	}
 	
 	@PostMapping("/users/{userId}")
 	public String postOneUser (User user) {
 		userService.saveUser(user);
-		return "redirect:/users/"+user.getUserId();
+		return "redirect:/users/" + user.getUserId();
 	}
 	
 	@PostMapping("/users/{userId}/delete")
