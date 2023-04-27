@@ -51,7 +51,8 @@ public class UserController {
 		User user = userService.findById(userId);
 		model.put("users", Arrays.asList(user));
 		model.put("user", user);
-		return "redirect:/user-details/" + user.getUserId();
+		model.put("address", user.getAddress());
+		return "user-details";
 	}
 	
 	@PostMapping("/users/{userId}")
