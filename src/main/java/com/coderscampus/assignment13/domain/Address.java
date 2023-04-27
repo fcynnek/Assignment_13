@@ -35,6 +35,19 @@ public class Address {
 	public void setUser(User user) {
 		this.user = user;
 	}
+	
+	public Address(String addressLine1, String addressLine2, String city, String region, String country, String zipCode) {
+        this.addressLine1 = addressLine1;
+        this.addressLine2 = addressLine2;
+        this.city = city;
+        this.region = region;
+        this.country = country;
+        this.zipCode = zipCode;
+    }
+	
+	public Address() {
+		// TODO Auto-generated constructor stub
+	}
 	@Column(length=200)
 	public String getAddressLine1() {
 		return addressLine1;
@@ -76,5 +89,11 @@ public class Address {
 	}
 	public void setZipCode(String zipCode) {
 		this.zipCode = zipCode;
+	}
+	@Override
+	public String toString() {
+		return "Address [userId=" + userId + ", user=" + user + ", addressLine1=" + addressLine1 + ", addressLine2="
+				+ addressLine2 + ", city=" + city + ", region=" + region + ", country=" + country + ", zipCode="
+				+ zipCode + "]";
 	}
 }

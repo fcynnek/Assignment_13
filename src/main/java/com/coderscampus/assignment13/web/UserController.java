@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
+import com.coderscampus.assignment13.domain.Address;
 import com.coderscampus.assignment13.domain.User;
 import com.coderscampus.assignment13.service.UserService;
 
@@ -51,9 +52,18 @@ public class UserController {
 		User user = userService.findById(userId);
 		model.put("users", Arrays.asList(user));
 		model.put("user", user);
-		model.put("address", user.getAddress());
+		
+		Address address = userService.findUserAddressById(userId);
+		model.put("address", Arrays.asList(address));
 		return "user-details";
 	}
+	
+//	@GetMapping("/user-details/{userId}")
+//	public String getUserAddress(ModelMap model, @PathVariable Long userId) {
+//		Address address = userService.findUserAddressById(userId);
+//		model.put("address", Arrays.asList(address));
+//		return "user-details";
+//	}
 	
 	@PostMapping("/users/{userId}")
 	public String postOneUser (User user) {
