@@ -48,7 +48,7 @@ public class UserController {
 		return "users";
 	}
 	
-	@GetMapping("/user-details/{userId}")
+	@GetMapping("/users/{userId}")
 	public String getOneUser (ModelMap model, @PathVariable Long userId) {
 		User user = userService.findById(userId);
 		model.put("users", Arrays.asList(user));
@@ -56,13 +56,13 @@ public class UserController {
 		
 		Address address = userService.findUserAddressById(userId);
 		model.put("address", Arrays.asList(address));
-		return "user-details";
+		return "redirect:/users/" + user.getUserId();
 	}
 	
 	@PostMapping("/updateUser") 
 	public String updateUser (@ModelAttribute User user, @ModelAttribute Address address) {
 		userService.updateUser (user, address);
-		return "redirect:/user-details/" + user.getUserId();
+		return "redirect:/users/" + user.getUserId();
 	}
 	
 //	@GetMapping("/user-details/{userId}")

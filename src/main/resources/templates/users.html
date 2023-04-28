@@ -5,7 +5,7 @@
 	</head>
 	<body>
 		<h1>Users</h1>
-		<!--
+		
 		<div th:if="${#lists.size(users) == 1}">
 			<form action="" method="post">
 				<div>
@@ -25,9 +25,9 @@
 				<input type="submit" value="Delete User Account" />
 			</form>
 		</div>
-		-->
+		
 		<div th:unless="${#lists.size(users) == 1}" th:each="user : ${users}">
-			<a th:href="@{/user-details/{userId}(userId=${user.userId})}"><span th:text="${user.userId}"></span></a><br/>
+			<a th:href="@{/users/{userId}(userId=${user.userId})}"><span th:text="${user.userId}"></span></a><br/>
 			<span th:text="${user.username}"></span><br/>
 			<span th:text="${user.name}"></span><br/>
 			<span th:text="${user.password}"></span>
