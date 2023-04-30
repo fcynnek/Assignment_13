@@ -53,17 +53,17 @@ public class UserController {
 		User user = userService.findById(userId);
 		model.put("users", Arrays.asList(user));
 		model.put("user", user);
-		
-		Address address = userService.findUserAddressById(userId);
-		model.put("address", Arrays.asList(address));
+		System.out.println(user);
+//		Address address = userService.findUserAddressById(userId);
+//		model.put("address", Arrays.asList(address));
 		return "redirect:/users/" + user.getUserId();
 	}
 	
-	@PostMapping("/updateUser") 
-	public String updateUser (@ModelAttribute User user, @ModelAttribute Address address) {
-		userService.updateUser (user, address);
-		return "redirect:/users/" + user.getUserId();
-	}
+//	@PostMapping("/updateUser") 
+//	public String updateUser (@ModelAttribute User user, @ModelAttribute Address address) {
+//		userService.updateUser (user, address);
+//		return "redirect:/users/" + user.getUserId();
+//	}
 	
 //	@GetMapping("/user-details/{userId}")
 //	public String getUserAddress(ModelMap model, @PathVariable Long userId) {
