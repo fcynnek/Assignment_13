@@ -54,17 +54,17 @@ public class UserService {
 		return userOpt.orElse(new User());
 	}
 	
-	public Address findUserAddressById(Long userId) {
-//		Optional<Address> userAddress = addressRepo.findById(userId);
-		Optional<User> userOpt = userRepo.findById(userId);
-		if (userOpt.isPresent()) {
-			User user = userOpt.get();
-			return user.getAddress();
-		} else {
-			return null;
-		}
-//		return userAddress.orElse(new Address());
-	}
+//	public Address findUserAddressById(Long userId) {
+////		Optional<Address> userAddress = addressRepo.findById(userId);
+//		Optional<User> userOpt = userRepo.findById(userId);
+//		if (userOpt.isPresent()) {
+//			User user = userOpt.get();
+//			return user.getAddress();
+//		} else {
+//			return null;
+//		}
+////		return userAddress.orElse(new Address());
+//	}
 	
 	
 

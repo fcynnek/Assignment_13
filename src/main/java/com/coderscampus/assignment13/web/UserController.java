@@ -56,7 +56,8 @@ public class UserController {
 		System.out.println(user);
 //		Address address = userService.findUserAddressById(userId);
 //		model.put("address", Arrays.asList(address));
-		return "redirect:/users/" + user.getUserId();
+//		return "redirect:/users/" + user.getUserId();
+		return "users";
 	}
 	
 //	@PostMapping("/updateUser") 
