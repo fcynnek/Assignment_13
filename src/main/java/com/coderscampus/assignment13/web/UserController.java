@@ -60,11 +60,11 @@ public class UserController {
 		return "users";
 	}
 	
-//	@PostMapping("/updateUser") 
-//	public String updateUser (@ModelAttribute User user, @ModelAttribute Address address) {
-//		userService.updateUser (user, address);
-//		return "redirect:/users/" + user.getUserId();
-//	}
+	@PostMapping("/updateUser/{userId}") 
+	public String updateUser (@ModelAttribute User user, @ModelAttribute Address address) {
+		userService.updateUser (user, address);
+		return "users";
+	}
 	
 //	@GetMapping("/user-details/{userId}")
 //	public String getUserAddress(ModelMap model, @PathVariable Long userId) {
