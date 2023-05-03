@@ -82,6 +82,15 @@ public class UserService {
 			accountRepo.save(checking);
 			accountRepo.save(savings);
 		}
+		if (user.getAddress() == null) {
+			Address address = new Address();
+			user.setAddress(address);
+			user.getAddress().setUserId(user.getUserId());
+		}
+		if (user.getAddress().getUser() == null) {
+			user.getAddress().setUser(user);
+			user.getAddress().setUserId(user.getUserId());
+		}
 		return userRepo.save(user);
 	}
 
