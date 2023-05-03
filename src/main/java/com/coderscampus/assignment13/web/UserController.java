@@ -61,7 +61,8 @@ public class UserController {
 	}
 	
 	@PostMapping("/updateUser/{userId}") 
-	public String updateUser (@ModelAttribute User user, @ModelAttribute Address address) {
+	public String updateUser (@ModelAttribute User user, @ModelAttribute Address address, @PathVariable Long userId) {
+		User user = userService.findById(userId);
 		userService.updateUser (user, address);
 		return "users";
 	}
