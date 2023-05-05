@@ -33,7 +33,7 @@ public class AccountService {
 		Account account = new Account();
 		user.getAccounts().add(account);
 		account.getUsers().add(user);
-		account.setAccountName("Account" +  user.getAccounts());
+		account.setAccountName("Account" +  user.getAccounts().size());
 		
 		return accountRepo.save(account);
 	}

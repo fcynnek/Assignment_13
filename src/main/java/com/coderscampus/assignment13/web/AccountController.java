@@ -1,9 +1,12 @@
 package com.coderscampus.assignment13.web;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -32,14 +35,15 @@ public class AccountController {
 	}
 	
 	@PostMapping("users/{userId}/accounts")
-	public String postOneAccount (@PathVariable Long userId) {
+	public String postOneAccount (@PathVariable Long userId, @ModelAttribute Account account) {
+		account.setUsers((List<User>) userService.findById(userId));
 		accountService.save(userId);
 		
 		return "redirect:/users/" + userId;
 	}
 	
 	@PostMapping("users/{userId}/accounts/{accountId}") 
-	public String updateAccountName (@PathVariable Long userId, @PathVariable Long accountId, Account account) {
+	public String updateAccountName (@PathVariable Long userId, @PathVariable Long accountId, @ModelAttribute Account account) {
 		account.setAccountName(account.getAccountName());
 		accountService.save(account);
 		
