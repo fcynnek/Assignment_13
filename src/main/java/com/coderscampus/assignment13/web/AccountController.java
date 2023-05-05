@@ -37,7 +37,8 @@ public class AccountController {
 	@PostMapping("users/{userId}/accounts")
 	public String postOneAccount (@PathVariable Long userId, @ModelAttribute Account account) {
 		account.setUsers((List<User>) userService.findById(userId));
-		accountService.save(userId);
+		userService.findById(userId).getAccounts();
+		accountService.save(account);
 		
 		return "redirect:/users/" + userId;
 	}

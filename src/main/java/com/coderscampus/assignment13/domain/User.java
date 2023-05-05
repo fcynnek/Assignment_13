@@ -104,4 +104,9 @@ public class User {
 			return false;
 		return true;
 	}
+	
+	public void addAccount(Account account) {
+	    accounts.add(account);
+	    account.getUsers().add(this);
+	}
 }
