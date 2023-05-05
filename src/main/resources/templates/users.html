@@ -43,7 +43,7 @@
             </div>
             <br>
             <div>
-                <!--<input type="hidden" th:field="${user.userId}" />-->
+                <input type="hidden" th:field="${user.userId}" />
                 <input type="hidden" th:field="${user.accounts}" />
                 <input type="submit" value="Update User Account" />
             </div>
@@ -52,6 +52,18 @@
             <input type="submit" value="Delete User Account" />
         </form>
     </div>
+    <hr/>
+    <h2>Accounts</h2>
+    <div th:each="account : ${user.account}">
+        <a href="@{/users/{userId}/accounts/{accountId} (userId=${user.userId}, accountId=${account.accountId})}">
+            <span th:text="${account.accountName}"></span>
+        </a>
+    </div>
+    <form th:action="@{/users/{userId}/accounts (userId=${user.userId})}" method="post">
+        <input type="submit" value="Create New Bank Account"/>
+    </form>
+    <br />
+    <a href="/users">Back</a>
 
     <div th:unless="${#lists.size(users) == 1}" th:each="user : ${users}">
         <a th:href="@{/users/{userId}(userId=${user.userId})}"><span th:text="${user.userId}"></span></a><br />
