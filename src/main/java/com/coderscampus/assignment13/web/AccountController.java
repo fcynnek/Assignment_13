@@ -1,5 +1,6 @@
 package com.coderscampus.assignment13.web;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,16 +37,26 @@ public class AccountController {
 	
 	@PostMapping("users/{userId}/accounts")
 	public String postOneAccount (@PathVariable Long userId, @ModelAttribute Account account) {
-		account.setUsers((List<User>) userService.findById(userId));
-		userService.findById(userId).getAccounts();
+//		account.setUsers((List<User>) userService.findById(userId));
+//		userService.findById(userId).getAccounts();
+		
+//		List<User> users = (List<User>) userService.findById(userId);
+		User users = userService.findById(userId);
+		account.setUsers(Collections.singletonList(users));
+//		account.setUsers((List<User>) users);
+//		users.get(0).getAccounts().add(account);
+		users.getAccounts().add(account);
+		userService.saveUser(users);
 		accountService.save(account);
+		
 		
 		return "redirect:/users/" + userId;
 	}
 	
 	@PostMapping("users/{userId}/accounts/{accountId}") 
 	public String updateAccountName (@PathVariable Long userId, @PathVariable Long accountId, @ModelAttribute Account account) {
-		account.setAccountName(account.getAccountName());
+		Account currentAccount = accountService.findAccountById(accountId);
+		currentAccount.setAccountName(account.getAccountName());
 		accountService.save(account);
 		
 		userService.saveUser(userService.findById(userId));
