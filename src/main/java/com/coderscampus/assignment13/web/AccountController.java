@@ -25,11 +25,11 @@ public class AccountController {
 	private UserService userService;
 	
 	@GetMapping("users/{userId}/accounts/{accountId}")
-	public String getAccounts (ModelMap model, @PathVariable Long accountId) {
-		Account accounts = accountService.findAccountById(accountId);
-		User user = accounts.getUsers().get(0);
+	public String getAccounts (ModelMap model, @PathVariable Long accountId, @PathVariable Long userId) {
+		Account account = accountService.findAccountById(accountId);
+		User user = account.getUsers().get(0);
 		
-		model.put("accounts", accounts);
+		model.put("account", account);
 		model.put("user", user);
 		
 		return "accounts";
@@ -57,7 +57,7 @@ public class AccountController {
 	public String updateAccountName (@PathVariable Long userId, @PathVariable Long accountId, @ModelAttribute Account account) {
 		Account currentAccount = accountService.findAccountById(accountId);
 		currentAccount.setAccountName(account.getAccountName());
-		accountService.save(account);
+		accountService.save(currentAccount);
 		
 		userService.saveUser(userService.findById(userId));
 		
