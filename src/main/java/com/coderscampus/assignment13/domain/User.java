@@ -16,6 +16,8 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import org.hibernate.annotations.Cascade;
+
 @Entity // Class name = User, DB Table name = user
 @Table(name = "users")
 public class User {
@@ -69,7 +71,10 @@ public class User {
 	public void setAccounts(List<Account> accounts) {
 		this.accounts = accounts;
 	}
-	@OneToOne(mappedBy = "user", cascade = CascadeType.MERGE, orphanRemoval = true)
+	@OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
+//	@OneToOne(cascade = CascadeType.ALL)
+//	@JoinColumn(name = "user_id")
+//	@Cascade(org.hibernate.annotations.CascadeType.SAVE_UPDATE)
 	public Address getAddress() {
 		return address;
 	}
